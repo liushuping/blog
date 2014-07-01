@@ -1,7 +1,7 @@
 blog
 ====
 
-liushuping's blog on GitHub
+[liushuping](https://github.com/liushuping)'s [blog on GitHub](https://github.com/liushuping/blog/issues)
 
 Check the [blog posts](https://github.com/liushuping/blog/issues) from [issues list](https://github.com/liushuping/blog/issues)
 
