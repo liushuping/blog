@@ -1,4 +1,4 @@
-blog
+liushuping's blog
 ====
 #### [一个分号的麻烦](https://github.com/liushuping/blog/issues/1)
 #### [Beginner's JavaScript](https://github.com/liushuping/blog/issues/2)
