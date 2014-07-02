@@ -6,3 +6,6 @@ blog
 Check the [blog posts](https://github.com/liushuping/blog/issues) from [issues list](https://github.com/liushuping/blog/issues)
 
 The blog posts are under [CC0 license](https://github.com/liushuping/blog/blob/master/LICENSE)
+
+### [一个分号的麻烦](https://github.com/liushuping/blog/issues/1)
+### [Beginner's JavaScript](https://github.com/liushuping/blog/issues/2)
