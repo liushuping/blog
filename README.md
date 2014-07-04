@@ -1,10 +1,8 @@
 liushuping's blog
 ====
-```
 #### [谈一谈Web API的URL和HTTP Verb的使用](https://github.com/liushuping/blog/issues/9)
 #### [Beginner's JavaScript](https://github.com/liushuping/blog/issues/2)
 #### [一个分号的麻烦](https://github.com/liushuping/blog/issues/1)
-```
 ---
 [liushuping](https://github.com/liushuping)'s [blog on GitHub](https://github.com/liushuping/blog/issues)
 
