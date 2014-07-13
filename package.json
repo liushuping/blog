@@ -1,0 +1,31 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "description": "liushuping's blog",
+  "main": "app.js",
+  "dependencies": {
+    "github": "^0.2.1",
+    "level": "^0.18.0",
+    "handlebars": "^2.0.0-alpha.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "sudo node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liushuping/blog"
+  },
+  "keywords": [
+    "liushuping",
+    "blog",
+    "github",
+    "node.js"
+  ],
+  "author": "Shuping LIU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liushuping/blog/issues"
+  },
+  "homepage": "https://github.com/liushuping/blog"
+}
