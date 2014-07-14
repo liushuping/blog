@@ -6,7 +6,8 @@
   "dependencies": {
     "github": "^0.2.1",
     "level": "^0.18.0",
-    "handlebars": "^2.0.0-alpha.4"
+    "handlebars": "^2.0.0-alpha.4",
+    "express": "^4.6.1"
   },
   "devDependencies": {},
   "scripts": {
