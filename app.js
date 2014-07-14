@@ -1,12 +1,10 @@
 var fs = require('fs');
+var http = require('http');
+var util = require('./util');
 var level = require('level');
 var issuesDB = level('./db/issues');
 
-var http = require('http');
-
-var indexSrc = fs.readFileSync('./views/index.hbs', 'utf8');
-var Handlebars = require('handlebars');
-var indexTmpl = Handlebars.compile(indexSrc);
+var indexTmpl = util.template('./views/index.hbs');
 
 var issueGetOptions = {
     valueEncoding: 'json'
