@@ -1,22 +1,11 @@
+var fs = require('fs');
 var level = require('level');
 var issuesDB = level('./db/issues');
 
-var Handlebars = require('handlebars');
-
 var http = require('http');
 
-var indexSrc = '<html>' +
-        '  <head>' +
-        '  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />' +
-        '    <title>liushuping\'s blog</title>' +
-	'  </head>' +
-	'  <body>' +
-	'    {{#issues}}' +
-	'    <h2><a href={{html_url}}>{{title}}</a></h2>' +
-        '    {{/issues}}' +
-	'  </body>' +
-	'</html>';
-
+var indexSrc = fs.readFileSync('./views/index.hbs', 'utf8');
+var Handlebars = require('handlebars');
 var indexTmpl = Handlebars.compile(indexSrc);
 
 var issueGetOptions = {
