@@ -1,59 +1,55 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var fs = require('fs');
+var http = require('http');
+var util = require('./util');
+var level = require('level');
+var issuesDB = level('./db/issues');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var indexTmpl = util.template('./views/index.hbs');
 
-var app = express();
+var issueGetOptions = {
+    valueEncoding: 'json'
+};
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+function respondOnServerError(err, res) {
+    res.statusCode = 200;
+    res.end(err);
+}
 
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+function extractIssue(issue) {
+    return {
+	title: issue.title,
+	url: issue.url
+    };
+}
 
-app.use('/', routes);
-app.use('/users', users);
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+function readAllIssues(callback) {
+    var stream = issuesDB.createValueStream(issueGetOptions);
+    var issues = [];
+    stream.on('data', function(issue) {
+	issues.push(issue);
+    });
+    stream.on('end', function() {
+	callback && callback(issues.reverse());
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
+function respondIssues(issues, res) {
+    var body = indexTmpl({
+	issues: issues
     });
+
+    res.statusCode = 200;
+    res.end(body);
+}
+
+function genIndex(res) {
+    readAllIssues(function(issues) {
+	respondIssues(issues, res);
+    });
+}
+
+var server = http.createServer(function(req, res) {
+    genIndex(res);
 });
 
-
-module.exports = app;
+server.listen(80);

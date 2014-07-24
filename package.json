@@ -1,33 +1,17 @@
 {
   "name": "blog",
-  "version": "0.0.0",
-  "description": "liushuping's blog",
-  "main": "app.js",
-  "dependencies": {
-    "github": "^0.2.1",
-    "level": "^0.18.0",
-    "handlebars": "^2.0.0-alpha.4",
-    "express": "^4.6.1",
-    "consolidate": "^0.10.0"
-  },
-  "devDependencies": {},
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "sudo node app.js"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/liushuping/blog"
-  },
-  "keywords": [
-    "liushuping",
-    "blog",
-    "github",
-    "node.js"
-  ],
-  "author": "Shuping LIU",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/liushuping/blog/issues"
-  },
-  "homepage": "https://github.com/liushuping/blog"
+  "dependencies": {
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0"
+  }
 }
