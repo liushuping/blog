@@ -3,7 +3,7 @@ var user = process.argv[2],
     GitHubApi = require('github'),
     level = require('level'),
 
-    issuesDB = level('./db/issues');
+    issuesDB = level('../db/issues');
 
     github = new GitHubApi({
         version: '3.0.0',
