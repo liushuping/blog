@@ -3,7 +3,8 @@ var router = express.Router();
 var fs = require('fs');
 var http = require('http');
 var level = require('level');
-var issuesDB = level(__dirname + '/../db/issues');
+var path = require('path');
+var issuesDB = level(path.join(__dirname, '../db/issues'));
 
 router.get('/', function(req, res) {
     readAllIssues(function(issues)  {
