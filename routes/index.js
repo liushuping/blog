@@ -3,16 +3,10 @@ var router = express.Router();
 var fs = require('fs');
 var http = require('http');
 var level = require('level');
-//var util = require('../lib/util');
 var issuesDB = level(__dirname + '/../db/issues');
-//var Handlebars = require('handlebars');
-//var indexView = fs.readFileSync(__dirname + '/../views/index.hbs', 'utf8');
-//var indexTmpl = Handlebars.compile(indexView);
 
 router.get('/', function(req, res) {
-    //genIndex(res); 
     readAllIssues(function(issues)  {
-console.log(issues);
         res.render('index', { issues: issues });
     });
 });
@@ -43,20 +37,5 @@ function readAllIssues(callback) {
 	callback && callback(issues.reverse());
     });
 }
-
-//function respondIssues(issues, res) {
-//    var body = indexTmpl({
-//	issues: issues
-//    });
-//
-//    res.statusCode = 200;
-//    res.end(body);
-//}
-//
-//function genIndex(res) {
-//    readAllIssues(function(issues) {
-//	respondIssues(issues, res);
-//    });
-//}
 
 module.exports = router;
