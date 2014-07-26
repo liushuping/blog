@@ -21,7 +21,27 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.param(function(name, fn){
+  if (fn instanceof RegExp) {
+    return function(req, res, next, val){
+      var captures;
+      if (captures = fn.exec(String(val))) {
+        req.params[name] = captures;
+        next();
+      } else {
+        next('route');
+      }
+    }
+  }
+});
+
 app.use('/', routes);
+
+app.param('id', /^\d+$/);
+
+app.get('/:id', function(req, res){
+    res.send('user ' + req.params.id);
+});
 app.use('/users', users);
 
 /// catch 404 and forward to error handler
