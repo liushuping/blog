@@ -5,8 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routeconfig = require('./routeconfig');
 
 var app = express();
 
@@ -21,35 +20,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.param(function(name, fn){
-  if (fn instanceof RegExp) {
-    return function(req, res, next, val){
-      var captures;
-      if (captures = fn.exec(String(val))) {
-        req.params[name] = captures;
-        next();
-      } else {
-        next('route');
-      }
-    }
-  }
-});
-
-app.use('/', routes);
-
-app.param('id', /^\d+$/);
-
-app.get('/:id', function(req, res){
-    res.send('user ' + req.params.id);
-});
-app.use('/users', users);
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+routeconfig.config(app);
 
 /// error handlers
 
