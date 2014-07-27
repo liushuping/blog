@@ -7,7 +7,7 @@ var githubIssues = require('../lib/githubissues');
 
 router.get('/:id', function(req, res) {
     githubIssues.get(req.params.id, function(issue) {
-        res.render('post', {issue: issue});
+        res.render('post', issue);
     });
 });
 
