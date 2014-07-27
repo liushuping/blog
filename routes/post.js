@@ -6,14 +6,19 @@ var path = require('path');
 var marked = require('marked');
 var githubIssues = require('../lib/githubissues');
 
+marked.setOptions({
+    renderer: new marked.Renderer(),
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: true,
+    smartLists: true,
+    smartypants: false
+});
+
 router.get('/:id', function(req, res) {
     githubIssues.get(req.params.id, function(issue) {
-//        var body = markdown.toHTML(issue.body);
-//        var post = {
-//            title: issue.title,
-//            body: body
-//        };
-        
         issue.md = marked;
         res.render('post', issue);
     });
