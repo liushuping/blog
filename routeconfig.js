@@ -1,4 +1,5 @@
 var routes = require('./routes/index');
+var post = require('./routes/post');
 var users = require('./routes/users');
 
 function config(app) {
@@ -20,10 +21,7 @@ function config(app) {
 
     app.param('id', /^\d+$/);
 
-    app.get('/:id', function(req, res){
-        res.send('user ' + req.params.id);
-    });
-    app.use('/users', users);
+    app.get('/:id', post);
 
     /// catch 404 and forward to error handler
     app.use(function(req, res, next) {
