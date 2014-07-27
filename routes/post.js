@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 var githubIssues = require('../lib/githubissues');
 
 router.get('/:id', function(req, res) {
@@ -14,7 +14,7 @@ router.get('/:id', function(req, res) {
 //            body: body
 //        };
         
-        issue.md = markdown.toHTML;
+        issue.md = marked;
         res.render('post', issue);
     });
 });
