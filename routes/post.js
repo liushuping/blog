@@ -17,6 +17,22 @@ marked.setOptions({
     smartypants: false
 });
 
+router.param(function(name, fn){
+    if (fn instanceof RegExp) {
+        return function(req, res, next, val){
+            var captures;
+            if (captures = fn.exec(String(val))) {
+                req.params[name] = captures;
+                next();
+            } else {
+                next('route');
+            }
+        }
+    }
+});
+
+router.param('id', /^\d+$/);
+
 router.get('/:id', function(req, res) {
     githubIssues.get(req.params.id, function(issue) {
         issue.md = marked;
