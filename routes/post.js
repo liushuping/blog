@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var params = require('express-params');
 var fs = require('fs');
 var http = require('http');
 var path = require('path');
@@ -17,19 +18,7 @@ marked.setOptions({
     smartypants: false
 });
 
-router.param(function(name, fn){
-    if (fn instanceof RegExp) {
-        return function(req, res, next, val){
-            var captures;
-            if (captures = fn.exec(String(val))) {
-                req.params[name] = captures;
-                next();
-            } else {
-                next('route');
-            }
-        }
-    }
-});
+params.extend(router);
 
 router.param('id', /^\d+$/);
 

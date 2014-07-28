@@ -15,6 +15,7 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "jade": "~1.3.0",
-    "marked": "*"
+    "marked": "*",
+    "express-params": "0.0.3"
   }
 }
