@@ -23,11 +23,14 @@ params.extend(router);
 router.param('id', /^\d+$/);
 router.param('slug', /^.*$/);
 
-router.get('/:id/:slug', function(req, res) {
+router.get('/:id', handler);
+router.get('/:id/:slug', handler);
+
+function handler(req, res) {
     githubIssues.get(req.params.id, function(issue) {
         issue.md = marked;
         res.render('post', issue);
     });
-});
+};
 
 module.exports = router;
