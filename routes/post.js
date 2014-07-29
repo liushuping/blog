@@ -28,7 +28,7 @@ router.get('/:id/:slug', handler);
 
 function handler(req, res) {
     githubIssues.get(req.params.id, function(issue) {
-        var slug = issue.title;
+        var slug = issue.title.replace(/\s+/g, '-');
         if (req.params.slug != slug) {
             var url = '/' + req.params.id + '/' + slug;
             res.redirect(url);
