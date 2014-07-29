@@ -21,8 +21,9 @@ marked.setOptions({
 params.extend(router);
 
 router.param('id', /^\d+$/);
+router.param('slug', /^.*$/);
 
-router.get('/:id', function(req, res) {
+router.get('/:id/:slug', function(req, res) {
     githubIssues.get(req.params.id, function(issue) {
         issue.md = marked;
         res.render('post', issue);
