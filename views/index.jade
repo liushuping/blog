@@ -4,4 +4,4 @@ block content
   h1= title
   each issue in issues
     h2
-      a(href=issue.html_url)= issue.title
+      a(href='/' + issue.number)= issue.title
