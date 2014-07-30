@@ -26,8 +26,15 @@ router.param('slug', /^.*$/);
 router.get('/:id', handler);
 router.get('/:id/:slug', handler);
 
-function handler(req, res) {
+function handler(req, res, next) {
     githubIssues.get(req.params.id, function(issue) {
+        if (issue.number == undefined) {
+            var err = new Error('Not Found');
+            err.status = 404;
+            next(err);
+            return;
+        }
+
         var slug = issue.title.replace(/\s+/g, '-');
         if (req.params.slug != slug) {
             var url = '/' + req.params.id + '/' + slug;
