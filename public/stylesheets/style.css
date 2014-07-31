@@ -3,7 +3,13 @@ body {
     max-width: 720px;
     margin: 0 auto;
     padding: 30px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    font: 13px Helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.4;
+    color: #333333;
 }
 
 h1 {
@@ -12,4 +18,10 @@ h1 {
 
 a {
     text-decoration: none;
+    background: transparent;
+}
+
+a:active,
+a:hover {
+    outline: 0;
 }
