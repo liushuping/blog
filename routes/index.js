@@ -7,7 +7,8 @@ var githubIssues = require('../lib/githubissues');
 
 router.get('/', function(req, res) {
     githubIssues.getAll(function(issues)  {
-        res.render('index', { issues: issues });
+        var title = 'Liushuping\'s Blog';
+        res.render('index', { issues: issues, title: title });
     });
 });
 
