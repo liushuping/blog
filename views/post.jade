@@ -2,7 +2,10 @@ extends layout
 
 block head
   link(rel='stylesheet', href='/stylesheets/github-markdown.css')
+  link(rel='stylesheet', href='/stylesheets/post.css')
 
 block content
   h1= title
+  p.post.meta= updated_at
+  div.clear
   .markdown-body!= md(body)

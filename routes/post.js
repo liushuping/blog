@@ -28,6 +28,7 @@ router.get('/:id/:slug', handler);
 
 function handler(req, res, next) {
     githubIssues.get(req.params.id, function(issue) {
+        console.log(issue);
         if (issue.number == undefined) {
             var err = new Error('Not Found');
             err.status = 404;

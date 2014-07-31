@@ -12,6 +12,13 @@ body {
     color: #333333;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        padding-left:0;
+        padding-right:0;
+    }
+}
+
 h1 {
     text-align: center;
 }
@@ -24,4 +31,8 @@ a {
 a:active,
 a:hover {
     outline: 0;
+}
+
+.clear {
+    clear: both;
 }
