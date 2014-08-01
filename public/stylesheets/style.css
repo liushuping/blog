@@ -7,8 +7,8 @@ body {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font: 13px Helvetica, arial, freesans, clean, sans-serif;
-    line-height: 1.4;
+    font: 15px Helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.7;
     color: #333333;
 }
 
@@ -21,6 +21,11 @@ body {
 
 h1 {
     text-align: center;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 a {
