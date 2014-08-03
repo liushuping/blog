@@ -1,11 +1,12 @@
+var sitemap = require('./routes/sitemap');
 var index = require('./routes/index');
 var post = require('./routes/post');
 var users = require('./routes/users');
 
 function config(app) {
 
+    app.use(sitemap);
     app.use(index);
-
     app.use(post);
 
     /// catch 404 and forward to error handler
