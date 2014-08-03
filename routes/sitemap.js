@@ -1,16 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var githubIssues = require('../lib/githubissues');
 var sm = require('sitemap');
+var sitemap;
 
-var sitemap = sm.createSitemap ({
-      hostname: 'http://blog.liushupig.com',
-      cacheTime: 600000,        // 600 sec - cache purge period
-      urls: [
-        { url: '/page-1/',  changefreq: 'daily', priority: 0.3 },
-        { url: '/page-2/',  changefreq: 'monthly',  priority: 0.7 },
-        { url: '/page-3/' }     // changefreq: 'weekly',  priority: 0.5
-      ]
+githubIssues.getAll(function(issues)  {
+    var title = '高阶是对抽象的抽象';
+    
+    var urls = issues.map(function(issue) {
+	return {
+	    url: '/' + issue.number
+	}
     });
+        
+    sitemap = sm.createSitemap ({
+        hostname: 'http://blog.liushupig.com',
+        cacheTime: 600000,        // 600 sec - cache purge period
+        urls: urls
+    });
+});
+
 
 router.get('/sitemap.xml', function(req, res) {
   sitemap.toXML(function (xml) {
