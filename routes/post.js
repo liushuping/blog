@@ -24,6 +24,7 @@ function handler(req, res, next) {
         }
 
         var slug = issue.title.replace(/\s+/g, '-');
+	issue.description = issue.title + '-刘淑平的Blog';
         if (req.params.slug != slug) {
             var url = '/' + req.params.id + '/' + slug;
             res.redirect(url);
