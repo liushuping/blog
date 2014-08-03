@@ -31,8 +31,10 @@ function handler(req, res, next) {
 	issue.description = issue.title + '-刘淑平的Blog';
 	issue.keywords = keywords_arr.join(',');
 
+        var url = '/' + req.params.id + '/' + slug;
+	issue.canonical = 'http://blog.liushuping.com' + url;
+
         if (req.params.slug != slug) {
-            var url = '/' + req.params.id + '/' + slug;
             res.redirect(url);
         } else {
             res.render('post', issue);
