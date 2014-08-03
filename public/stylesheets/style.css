@@ -12,6 +12,10 @@ body {
     color: #333333;
 }
 
+h1 {
+    text-align: center;
+}
+
 .clear {
     clear: both;
 }
