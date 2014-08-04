@@ -27,6 +27,7 @@ function handler(req, res, next) {
 
 	issue.description = issue.title + '-刘淑平的Blog';
 	issue.keywords = keywords_arr.join(',');
+	issue.updated_at = extractDate(issue.updated_at);
 
         var url = '/' + req.params.id + '/' + slug;
 	issue.canonical = 'http://blog.liushuping.com' + url;
@@ -38,5 +39,11 @@ function handler(req, res, next) {
         }
     });
 };
+
+function extractDate(timeStr) {
+    var pattern = /^\d{4}-\d{2}-\d{2}/;
+    var matches = pattern.exec(timeStr);
+    return matches[0];
+}
 
 module.exports = router;
