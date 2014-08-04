@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var params = require('express-params');
-var fs = require('fs');
-var http = require('http');
-var path = require('path');
 var githubIssues = require('../lib/githubissues');
 
 params.extend(router);
