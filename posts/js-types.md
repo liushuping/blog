@@ -50,7 +50,7 @@ function MyObject() {
     this.name = 'MyObject';
 }
 ```
-`typeof`和`toString'的检测结果是
+`typeof`和`toString`的检测结果是
 ```javascript
 var obj = new MyObject;
 
