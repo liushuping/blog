@@ -73,7 +73,7 @@ obj instanceof MyObject; //true
 ```
 
 ## oftype.js
-`oftype.js`是一个简单小巧的检查JavaScript变量运行时库，在node.js中通过命令`npm install oftype`安装。通过下面的代码来检查变量类型：
+`oftype.js`是一个简单小巧的检查JavaScript变量运行时的库，在node.js中通过命令`npm install oftype`安装。通过下面的代码来检查变量类型：
 ```javascript
 var oftype = require('oftype');
 oftype(some_var, EXPECTED_TYPE);
@@ -104,15 +104,15 @@ var x = new MyObj();
 oftype(x, MyObject); //true;
 ```
 
-`undefined`和`null`是两个特殊的类型，`undefined`是一个类型标识符，该类型只有一个值，也就是其本身`undefined`.因此对`undefined`的类型检查有如下代码：
+`undefined`和`null`是两个特殊的类型，`undefined`是一个类型标识符，该类型只有一个值，也就是其本身`undefined`. 因此对`undefined`的类型检查有如下代码：
 ```javascript
 var x = undefined;
 var oftype = require('oftype');
 
 // 仅在x是undefined的情况下返回true
 oftype(x, undefined); //true;
-
 ```
+
 `null`是一个特殊的值，不属于任何类型，所以检查它的代码应该是如下：
 ```javascript
 var x = null;
@@ -145,3 +145,12 @@ oftype(y, Object); //true;
 
 参数`nullAsObject`的默认值是`false`
 
+值得一提的是，原始数据类型（primitive types）的声明有两种方式：字面量（literal）和构造函数方式。理论上，通过构造函数构造的原始类型归属Object类型。然而这种情况下我们仍然期望它是原始数据类型。这时可以通过`primitiveObject`参数来控制：
+```javascript
+var oftype = require('oftype');
+var x = new Number(123);
+
+oftype(x, Number, {primitiveObject: true}); //true;
+```
+
+同`nullObject`参数类似，这个参数也可以全局设置。这个参数的默认值是`true`。
