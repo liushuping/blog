@@ -71,3 +71,77 @@ var obj = new MyObject;
 
 obj instanceof MyObject; //true
 ```
+
+## oftype.js
+`oftype.js`是一个简单小巧的检查JavaScript变量运行时库，在node.js中通过命令`npm install oftype`安装。通过下面的代码来检查变量类型：
+```javascript
+var oftype = require('oftype');
+oftype(some_var, EXPECTED_TYPE);
+```
+例如：
+```javascript
+var oftype = require('oftype');
+
+var x = 123;
+oftype(x, Number); //true;
+
+var y = 'abc';
+oftype(y, String); //true;
+
+var z = new Date();
+oftype(z, Date); //true;
+```
+
+对于自定义类型数据也可以检查，例如：
+```javascript
+function MyObj() {
+    this.name = 'ABC';
+}
+
+var oftype = require('oftype');
+var x = new MyObj();
+
+oftype(x, MyObject); //true;
+```
+
+`undefined`和`null`是两个特殊的类型，`undefined`是一个类型标识符，该类型只有一个值，也就是其本身`undefined`.因此对`undefined`的类型检查有如下代码：
+```javascript
+var x = undefined;
+var oftype = require('oftype');
+
+// 仅在x是undefined的情况下返回true
+oftype(x, undefined); //true;
+
+```
+`null`是一个特殊的值，不属于任何类型，所以检查它的代码应该是如下：
+```javascript
+var x = null;
+var oftype = require('oftype');
+
+// 仅在x是null的情况下返回true
+oftype(x, null); //true;
+```
+
+然而，有时我们希望null是Object类型的一个特殊值，因此可以加一个参数`nullAsObject: true`到函数调用中：
+```javascript
+var x = null;
+var oftype = require('oftype');
+
+oftype(x, Object); //false;
+oftye(x, Object, {nullAsObject: true}); //true;
+```
+
+更多的时候，我们可能希望一次设置参数后，整个程序能检测`null`为`Object`类型，而不需要每次函数调用都给传参数。这时，可以通过设置`oftype`的全局参数来实现:
+```javascript
+var oftype = require('oftype');
+oftype.nullAsObject = true;
+
+var x = null;
+var y = null;
+
+oftype(x, Object); //true;
+oftype(y, Object); //true;
+```
+
+参数`nullAsObject`的默认值是`false`
+
