@@ -2,7 +2,7 @@
 
 JavaScript的数据是动态类型，运行时可以动态改变变量的数据类型。然而程序中仍然有很多情况需要判断当前变量的数据类型。那么有什么有效的方法吗？
 
-JavaScript中数据类型有`String`, `Number`, `Boolean`, `Array`, `Object` 和`Undefined`类型。另外，正则表达式类型`RegExp`，`Function`类型和时间类型`Date`也是常见的类型。因此，我们希望能对一个变量正确地检查出这些类型。
+JavaScript中数据类型有`String`, `Number`, `Boolean`, `Array`, `Object` 和`undefined`类型。另外，正则表达式类型`RegExp`，`Function`类型和时间类型`Date`也是常见的类型。因此，我们希望能对一个变量正确地检查出这些类型。
 
 ## typeof
 `typeof` 是JavaScript的关键字，能检查出给定变量的类型。对上述类型用`typeof`做一个测试：
