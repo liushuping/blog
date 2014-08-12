@@ -9,6 +9,8 @@ var routeconfig = require('./routeconfig');
 var errorhandlers = require('./errorhandlers');
 var app = express();
 
+app.disable('x-powered-by');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
