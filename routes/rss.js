@@ -18,10 +18,12 @@ var feed = new Rss({
 
 githubIssues.getAll(function(issues)  {
     issues.forEach(function(issue) {
+        var slug = issue.title.replace(/\s+/g, '-');
+
         feed.item({
             title: issue.title,
             description: issue.body,
-            url: 'http://blog.liushuping.com/' + issue.number,
+            url: 'http://blog.liushuping.com/' + issue.number + '/' + slug,
             date: issue.updated_at
         });
     });
