@@ -57,11 +57,12 @@ function processIssues(issues) {
 
     for (i = 0, len = issues.length; i < len; i++) {
         title = issues[i].title;
+
         if (/.*\s+draft\s*$/i.test(title)) {
             continue;
         }
 
-	    updateAnIssue(issues[i]);
+        updateAnIssue(issues[i]);
     }
 }
 

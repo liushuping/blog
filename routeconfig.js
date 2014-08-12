@@ -1,4 +1,5 @@
 var sitemap = require('./routes/sitemap');
+var rss = require('./routes/rss');
 var index = require('./routes/index');
 var post = require('./routes/post');
 var users = require('./routes/users');
@@ -6,6 +7,7 @@ var users = require('./routes/users');
 function config(app) {
 
     app.use(sitemap);
+    app.use(rss);
     app.use(index);
     app.use(post);
 
