@@ -9,3 +9,12 @@ block content
   p.post.meta= updated_at
   div.clear
   .markdown-body!= body
+  div.ds-thread(data-thred-key= thread, data-title= title, data-author-key= 'liushuping', data-form-position= 'top')
+
+block body_script
+  script(type='text/javascript').
+    var duoshuoQuery = {
+      short_name: "liushuping"
+    };
+
+  script(src='http://static.duoshuo.com/embed.js')
