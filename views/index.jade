@@ -5,6 +5,9 @@ block head
 
 block content
   h1= title
+  a(href='/rss.xml')
+    img#rss(src='http://img.teapic.com/thumbs/201308/05/151458fvcjhkesqtdkdawj.jpg.middle.jpg', alt='rss')
+
   each issue in issues
     h2
       a(href='/' + issue.number)= issue.title
