@@ -8,8 +8,10 @@ githubIssues.getAll(function(issues)  {
     var title = '高阶是对抽象的抽象';
     
     var urls = issues.map(function(issue) {
+        var slug = issue.title.replace(/\s+/g, '-');
+
 	return {
-	    url: '/' + issue.number
+	    url: '/' + issue.number + '/' + slug
 	}
     });
         
