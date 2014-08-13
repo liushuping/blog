@@ -71,7 +71,8 @@ So, a JavaScript object is a Hastable as it meets all features of a hastable.
 It answers why there is no such a hastable or dictionary object in JavaScript. 
 Because all object are hastables!
 
-It answers why below code outputs `1 2 3` rather than `a b c`:
+It answers why below code outputs `1 2 3` rather than `a b c`, because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
+
 ```javascript
 var arr = ['a', 'b', 'c'];
 
@@ -80,10 +81,8 @@ for (var x in arr) {
 }
 ```
 
-Because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
-
 It answers why a function can also has properties
-Because function is also an object (hastable)!
+Because function is also an object (hastable)! More details will be in my later post on "Function as first class object"
 ```javascript
 function foo() {
 }
@@ -91,5 +90,39 @@ function foo() {
 foo.some_property = 'abc';
 ```
 
+Acutally this very useful. For example suppose we have a function `product`, and to void re-calcuating the numbers that we have done before, use can use memoization:
+```javascript
+var history = {};
 
+function product (n) {
+    if (n == 1) {
+        return 1;
+    } else if (history[n] != undefined) {
+        return history[n];
+    } else {
+        var x = n * product(n - 1);
+        history[n] = x;
+        return x;
+    }
+}
+```
+This is good, but not perfect. To enable memoization an extra variable `history` is declared. But actually, we could just attach this extrac variable to the function:
+```javascript
+function product (n) {
+    if (n == 1) {
+        return 1;
+    } else if (product.history[n] != undefined) {
+         return product.history[n];
+    } else {
+        var x = n * product(n - 1);
+        product.history[n] = x;
+        return x;
+    }
+}
+```
+
+It is worth mentioning that in the example, the `history` variable well demonstrated the use of a JavaScript object as a hashtable for quick searching in O(1) time complexity.
+
+---
+by liushuping
 
