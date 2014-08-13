@@ -1,3 +1,5 @@
+# 谈一谈Web API的URL和HTTP Verb的使用
+
 ## 起因 
 根据[维基百科的定义](http://en.m.wikipedia.org/wiki/Web_API)：Web API是指面向Web服务器或者Web浏览器以及其它HTTP客户端的API(应用程序编程接口)。Web API有不同的实现风格，比如常见的RPC和REST风格。而任何一种实现都是在HTTP基础之上的，HTTP消息的结构是Web API构成的主要元素，如HTTP URL，状态码(Status Code)和HTTP 方法(Verb)等。 
  
