@@ -47,9 +47,49 @@ delete obj.name;
 
 Although this is supported by JavaScript, but a best practice is avoid deleting a property because it will cause a restructure of the object. So, if a property is not used any more, just set it to `undefined` or `null`.
 
+## New key-value pair can be added into a JavaScript object
+Simply by setting a value to a non-existing property will create a new property in that object.
+```javascript
+// adding a new property into obj.
+obj.id = '123';
 
+// test the new added property
+console.log(obj.id); //123
+```
 
+### Keys of a JavaScript object can be literated
+The JavaScript `for in` loop can iterate all keys in an object
+```javascript
+for (var key in obj) {
+    console.log(key);
+}
+```
 
+So, a JavaScript object is a Hastable as it meets all features of a hastable.
+
+## Why it is important knowing a JavaScript object is a hastable?
+### It answers why there is no such a hastable or dictionary object in JavaScript. 
+Because all object are hastables!
+
+### It answers why below code outputs `1 2 3` rather than `a b c`:
+```javascript
+var arr = ['a', 'b', 'c'];
+
+for (var x in arr) {
+    console.log(x);
+}
+```
+
+Because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
+
+### It answers why a function can also has properties
+Because function is also an object (hastable)!
+```javascript
+function foo() {
+}
+
+foo.some_property = 'abc';
+```
 
 
 
