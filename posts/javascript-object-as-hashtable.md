@@ -1,11 +1,11 @@
 # JavaScript Object as a Hastable
 
-JavaScript has primitive types (Number, Boolean and String) and complex types (built-in and user defined objects). A JavaScript object could be easily understood by considering it as a "Hashtable".
+JavaScript has primitive types (Number, Boolean and String) and complex types (built-in and user defined objects). A JavaScript object(complex type) could be easily understood by considering it as a "Hashtable".
 
 ## Hastable
 In general, a hashtable has below listed typical features:
 * Is a set of key-value pairs
-* A value can be accessed(get, set and delete) by the key
+* A value can be accessed(get, set and delete) via key
 * New key-value pair can be added into a hastable
 * Keys of a hashtable can be iterated
 
@@ -21,10 +21,10 @@ var obj = {
 };
 ```
 
-Obviously, it is exactly a set of key-value pairs. A value for a key could also be another object, it represents a hastale nested in another one.
+Obviously, it is exactly a set of key-value pairs. A value for a key could also be another object, it represents a hastable nested in another one.
 
-## JavaScript object value can be accessed by the key
-Definitely, with a given JavaScript object `obj`, we can get it's property like this `obj.name`. And for sure, if you prefer the more hastable style of getting a value (a property), you could always use `obj['name']`. Actually, the hashtable style works for all situations, but the `object.property` style does not work for situations that the key is not a valid variable name defined by the language, such as `obj['a property']`.
+## JavaScript object value can be accessed via the key
+Definitely, with a given JavaScript object `obj`, we can get its property like this `obj.name`. And for sure, if you prefer the more hastable style of getting a value (a property), you could always use `obj['name']`. Actually, the hashtable style works for all situations, but the `object.property` style does not work for situations when the key is not a valid variable name defined by the language, such as `obj['a property']`.
 
 So, with this dot(`.`) or indexer(`[]`) operator, we can just get and set the value linked to the key:
 
@@ -38,14 +38,14 @@ obj.name = 'name1';
 obj['name'] = 'name2';
 ```
 
-As hashtable also support removing a key-value pair from it, JavaScript does this with `delete` operator:
+As hashtable also supports removing a key-value pair from it, JavaScript does this with `delete` operator:
 
 ```javascript
 // delete the name property from obj
 delete obj.name;
 ```
 
-Although this is supported by JavaScript, but a best practice is avoid deleting a property because it will cause a restructure of the object. So, if a property is not used any more, just set it to `undefined` or `null`.
+Although this is supported by JavaScript, but a best practice is to avoid deleting a property because it will cause a restructure of the object which is time consuming. So, if a property is not used any more, just set it to `undefined` or `null`.
 
 ## New key-value pair can be added into a JavaScript object
 Simply by setting a value to a non-existing property will create a new property in that object.
@@ -65,11 +65,13 @@ for (var key in obj) {
 }
 ```
 
-So, a JavaScript object is a Hastable as it meets all features of a hastable.
+So, a JavaScript object is a hastable as it meets all features of a hastable.
 
 ## Why it is important knowing a JavaScript object is a hastable?
 It answers why there is no such a hastable or dictionary object in JavaScript. 
 Because all object are hastables!
+
+It answers why setting a non-existing property of an object does not throw exception(or does not compile) like other programming languages? Because that is actually an action of inserting a new key-value pair (creating a new property).
 
 It answers why below code outputs `1 2 3` rather than `a b c`, because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
 
