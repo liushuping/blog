@@ -71,9 +71,9 @@ So, a JavaScript object is a hastable as it meets all features of a hastable.
 It answers why there is no such a hastable or dictionary object in JavaScript. 
 Because all object are hastables!
 
-It answers why setting a non-existing property of an object does not throw exception(or does not compile) like other programming languages? Because that is actually an action of inserting a new key-value pair (creating a new property).
+It answers why setting a non-existing property of an object does not throw an exception(or does not compile) like other programming languages? Because that is actually an action of inserting a new key-value pair (creating a new property).
 
-It answers why below code outputs `1 2 3` rather than `a b c`, because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
+It answers why below code outputs `0 1 2` rather than `a b c`, because iterating over a hastable is iterating all the keys and keys for an array object are the array indexes.
 
 ```javascript
 var arr = ['a', 'b', 'c'];
@@ -83,8 +83,7 @@ for (var x in arr) {
 }
 ```
 
-It answers why a function can also has properties
-Because function is also an object (hastable)! More details will be in my later post on "Function as first class object"
+It answers why a function can also has properties. Because function is also an object (hastable)! More details will be in my later post on "Function as first class object"
 ```javascript
 function foo() {
 }
@@ -92,7 +91,7 @@ function foo() {
 foo.some_property = 'abc';
 ```
 
-Acutally this very useful. For example suppose we have a function `product`, and to void re-calcuating the numbers that we have done before, use can use memoization:
+Acutally this very useful. For example suppose we have a function `product`, and to void re-calcuating the numbers that we have done before, we can use memoization:
 ```javascript
 var history = {};
 
@@ -108,9 +107,11 @@ function product (n) {
     }
 }
 ```
-This is good, but not perfect. To enable memoization an extra variable `history` is declared. But actually, we could just attach this extrac variable to the function:
+This is good, but not perfect. To enable memoization an extra variable `history` is declared. But actually, we could just attach this extra variable to the function:
 ```javascript
 function product (n) {
+    if (product.history == undefined) product.history = {};
+
     if (n == 1) {
         return 1;
     } else if (product.history[n] != undefined) {
