@@ -3,7 +3,7 @@ module.exports = {
 	    id: 10,
 	    path: 'an-example-of-thinking-in-abstraction.md',
 	    tags: ['Abstraction', 'JavaScript'],
-	    created_on: '2014-07-03T13:52:43Z',
+	    created_on: '2014-07-27T13:51:17Z',
 	    slug:'抽象的思考(一个例子)'
         }, {
 	    id: 9,

@@ -1,23 +1,10 @@
-var user = process.argv[2],
-    repo = process.argv[3],
-    GitHubApi = require('github'),
-    level = require('level'),
-    leveldown = require('leveldown'),
-    marked = require('marked');
-    issuesDB = level('../db/issues');
-
-    github = new GitHubApi({
-        version: '3.0.0',
-        protocol: 'https',
-    }),
-
-    updateOption = {
-	    valueEncoding: 'json'
-    },
-
-    issueMsg = {
-        user: user,
-        repo: repo
+var level = require('level');
+var marked = require('marked');
+var postsDB = level('../db/posts');
+var leveldown = require('leveldown');
+var postConfig = require('../posts/post-config');
+var updateOption = {
+        valueEncoding: 'json'
     };
     
 marked.setOptions({
@@ -32,44 +19,30 @@ marked.setOptions({
 });
 
 function destroyDB(callback) {
-    leveldown.destroy('../db/issues', function(err) {
+    leveldown.destroy('../db/posts', function(err) {
         if (err) {
             console.log(err);
         } else {
-            console.log('../db/issues is destroyed');
+            console.log('../db/posts is destroyed');
             (callback instanceof Function) && callback();
         }
     });
 }
 
-function updateAnIssue(issue) {
-    console.log('update issue ', issue.number, ' :', issue.title);
-    issue.body = marked(issue.body);
-    issuesDB.put(issue.number, issue, updateOption, function (err) {
-	    if (err) {
-	        console.log(err);
-	    }
+function updateAnPost(post) {
+    fetchAPost(post.path, function(body) {
+        console.log('update post ', post.id, ' :', issue.slug);
+        post.body = body;
+        postsDB.put(post.id, post, updateOption, function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
     });
 }
 
-function processIssues(issues) {
-    var i, len, title;
-
-    for (i = 0, len = issues.length; i < len; i++) {
-        title = issues[i].title;
-
-        if (/.*\s+draft\s*$/i.test(title)) {
-            continue;
-        }
-
-        updateAnIssue(issues[i]);
-    }
+function fetchAPost(url, callback) {
+    callback && callback(body);
 }
 
-github.issues.repoIssues(issueMsg, function(err, issues) {
-    if (err) {
-        console.log(err);
-    } else {
-    	processIssues(issues);	
-    }
-});
+postConfig.publishes.forEach(updateAnPost);
