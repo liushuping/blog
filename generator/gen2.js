@@ -32,10 +32,12 @@ function destroyDB(callback) {
 
 function updateAnPost(post) {
     fetchAPost(post.path, function(body) {
-        if (!post.slug) {
-            post.slug = /[\r\n\s]*^#\s*(.*)$/m.exec(body)[1];
-        }
-        post.body = marked(body);
+        var pattern = /^\s*#\s+(.+)$/m;
+        var matches = pattern.exec(body);
+        
+        post.title = matches[1];
+        post.slug = post.title;
+        post.body = marked(body.replace(pattern, ''));
         postsDB.put(post.id, post, updateOption, function (err) {
             console.log('update post ', post.id, ' :', post.slug);
             if (err) {
