@@ -35,7 +35,7 @@ function updateAnPost(post) {
         if (!post.slug) {
             post.slug = /[\r\n\s]*^#\s*(.*)$/m.exec(body)[1];
         }
-        post.body = body;
+        post.body = marked(body);
         postsDB.put(post.id, post, updateOption, function (err) {
             console.log('update post ', post.id, ' :', post.slug);
             if (err) {

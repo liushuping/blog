@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var params = require('express-params');
-var githubIssues = require('../lib/githubissues');
+var posts = require('../lib/posts');
 
 params.extend(router);
 
@@ -12,30 +12,27 @@ router.get('/:id', handler);
 router.get('/:id/:slug', handler);
 
 function handler(req, res, next) {
-    githubIssues.get(req.params.id, function(issue) {
-        if (issue.number == undefined) {
+    posts.get(req.params.id, function(post) {
+        if (post.id == undefined) {
             var err = new Error('Not Found');
             err.status = 404;
             next(err);
             return;
         }
 
-        var slug = issue.title.replace(/\s+/g, '-');
-	var keywords_arr = issue.labels.map(function(keyword) {
-	    return keyword.name;
-	});
+        var slug = post.slug;
 
-	issue.description = issue.title + '-刘淑平的Blog';
-	issue.keywords = keywords_arr.join(',');
-	issue.updated_at = extractDate(issue.updated_at);
+	post.description = post.title + '-刘淑平的Blog';
+	post.keywords = post.tags.join(',');
+	post.updated_at = extractDate(post.created_on);
 
         var url = '/' + req.params.id + '/' + slug;
-	issue.canonical = 'http://blog.liushuping.com' + url;
+	post.canonical = 'http://blog.liushuping.com' + url;
 
         if (req.params.slug != slug) {
             res.redirect(url);
         } else {
-            res.render('post', issue);
+            res.render('post', post);
         }
     });
 };
