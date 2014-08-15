@@ -1,3 +1,4 @@
+var fs = require('fs');
 var level = require('level');
 var marked = require('marked');
 var postsDB = level('../db/posts');
@@ -31,9 +32,12 @@ function destroyDB(callback) {
 
 function updateAnPost(post) {
     fetchAPost(post.path, function(body) {
-        console.log('update post ', post.id, ' :', issue.slug);
+        if (!post.slug) {
+            post.slug = /[\r\n\s]*^#\s*(.*)$/m.exec(body)[1];
+        }
         post.body = body;
         postsDB.put(post.id, post, updateOption, function (err) {
+            console.log('update post ', post.id, ' :', post.slug);
             if (err) {
                 console.log(err);
             }
@@ -42,7 +46,8 @@ function updateAnPost(post) {
 }
 
 function fetchAPost(url, callback) {
-    callback && callback(body);
+    var body = fs.readFileSync('../posts/' + url, 'utf8');    
+    (callback instanceof Function) && callback(body);
 }
 
 postConfig.publishes.forEach(updateAnPost);
