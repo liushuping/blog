@@ -24,7 +24,7 @@ function handler(req, res, next) {
 
 	post.description = post.title + '-刘淑平的Blog';
 	post.keywords = post.tags.join(',');
-	post.updated_at = extractDate(post.created_on);
+	post.created_on = extractDate(post.created_on);
 
         var url = '/' + req.params.id + '/' + slug;
 	post.canonical = 'http://blog.liushuping.com' + url;

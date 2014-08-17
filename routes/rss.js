@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var githubIssues = require('../lib/githubissues');
+var postsLib = require('../lib/posts');
 var Rss = require('rss');
 var title = '高阶是对抽象的抽象';
 var description = '刘淑平的Blog，专注于前端程序开发，致力于提高代码质量。对JavaScript和C#以及函数式编程有浓厚兴趣，认为抽象是解决复杂软件问题的强有力工具。';
@@ -16,15 +16,13 @@ var feed = new Rss({
 });
 
 
-githubIssues.getAll(function(issues)  {
-    issues.forEach(function(issue) {
-        var slug = issue.title.replace(/\s+/g, '-');
-
+postsLib.getAll(function(posts)  {
+    posts.forEach(function(post) {
         feed.item({
-            title: issue.title,
-            description: issue.body,
-            url: 'http://blog.liushuping.com/' + issue.number + '/' + slug,
-            date: issue.updated_at
+            title: post.title,
+            description: post.body,
+            url: 'http://blog.liushuping.com/' + post.id + '/' + post.slug,
+            date: post.created_on
         });
     });
 

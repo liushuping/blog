@@ -1,17 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var githubIssues = require('../lib/githubissues');
+var postsLib = require('../lib/posts');
 var sm = require('sitemap');
 var sitemap;
 
-githubIssues.getAll(function(issues)  {
+postsLib.getAll(function(posts)  {
     var title = '高阶是对抽象的抽象';
     
-    var urls = issues.map(function(issue) {
-        var slug = issue.title.replace(/\s+/g, '-');
-
+    var urls = posts.map(function(post) {
 	return {
-	    url: '/' + issue.number + '/' + slug
+	    url: '/' + post.id + '/' + post.slug
 	}
     });
         

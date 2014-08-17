@@ -8,6 +8,6 @@ block content
   a(href='/rss.xml')
     img#rss(src='http://img.teapic.com/thumbs/201308/05/151458fvcjhkesqtdkdawj.jpg.middle.jpg', alt='rss')
 
-  each issue in issues
+  each post in posts
     h2
-      a(href='/' + issue.number)= issue.title
+      a(href='/' + post.id)= post.title

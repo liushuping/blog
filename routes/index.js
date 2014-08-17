@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var githubIssues = require('../lib/githubissues');
+var postsLib = require('../lib/posts');
 
 router.get('/', function(req, res) {
-    githubIssues.getAll(function(issues)  {
+    postsLib.getAll(function(posts)  {
+console.log(posts);
         var title = '高阶是对抽象的抽象';
 	var description = '';        
 	var body = {
-	    issues: issues,
+	    posts: posts,
 	    title: title,
 	    canonical: 'http://blog.liushuping.com/',
 	    keywords: '刘淑平,liushuping,Blog,JavaScript,C#,程序,抽象',
