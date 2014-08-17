@@ -4,9 +4,10 @@ var postsLib = require('../lib/posts');
 
 router.get('/', function(req, res) {
     postsLib.getAll(function(posts)  {
-console.log(posts);
         var title = '高阶是对抽象的抽象';
-	var description = '';        
+        posts = posts.sort(function(p1, p2) {
+            return p2.id - p1.id;
+        });
 	var body = {
 	    posts: posts,
 	    title: title,
