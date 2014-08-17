@@ -11,6 +11,5 @@ a:hover {
 #rss {
     width: 32px;
     height: 32px;
-/*    margin-left: 80%;
-    margin-right: 20%;*/
+    border-radius: 50%;
 }
