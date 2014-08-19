@@ -1,5 +1,5 @@
 {
-	"publishes": [{
+	"2014": [{
 		"id": 10,
 		"path": "an-example-of-thinking-in-abstraction.md",
 		"tags": ["Abstraction", "JavaScript"],
