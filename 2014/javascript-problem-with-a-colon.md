@@ -9,18 +9,18 @@ JavaScript和CSS的代码都是通过ASP.NET MVC项目来组织的，通过[Bund
 
 ## 原因
 通过各种`console.log`打印信息的方式，最终发现原因是因为某个事先压缩好的文件结尾缺少了分号，造成文件合并时跟后面的代码直接连结而产生错误。这个代码是这样的结构
-```
+```javascript
 (function(){})()
 ```
 而这个文件是用[Web Essential](http://vswebessentials.com/)事先压缩的，*它居然不在文件结尾处添加分号！* 直接造成了这么大的麻烦。
 
 ## 好的习惯
 因此，为了避免类似的问题，一个好的习惯是在文件末尾记得添加一个分号，让代码自律，不能对其它无辜代码造成“伤害”
-```
+```javascript
 (function(){})();
 ```
 作为预防性措施，[防卫性代码](http://en.wikipedia.org/wiki/Defensive_programming)也是很有必要的：以分号开始一个文件来防止其它不“规矩”的代码带来“伤害”
-```
+```javascript
 ;(function(){})();
 ```
 
@@ -28,4 +28,5 @@ Crockford在他的JavaScript代码规范中这样提到
 > Put a ; (semicolon) at the end of every simple statement. 
 http://javascript.crockford.com/code.html
 
+---
 By liushuping
