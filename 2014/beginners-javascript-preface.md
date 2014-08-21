@@ -7,4 +7,8 @@ I also felt uncomfortable when I began to learn JavaScript, some concepts just c
  
 Actually, unlike C++ has extraordinary syntax and rules (I am not saying C++ is bad, but it should support old code and new features which makes it complex), JavaScript has very few language features. So, after years of intermittently learning of JavaScript, I would like to share how I understand JavaScript language key elements in following posts. Maybe it is not the best way to learn JavaScript, but just show you some reference. Hope it helps. 
 
+## Links to this series of posts
+* [JavaScript Object As a Hashtable](http://blog.liushuping.com/3)
+
+---
 By liushuping
