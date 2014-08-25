@@ -1,5 +1,11 @@
 {
 	"2014": [{
+		"id": 11,
+		"path": "javascript-how-do-you-check-types.md",
+		"tags": ["Type", "JavaScript"],
+		"created_on": "2014-08-25T223:13:17Z",
+		"slug": "抽象的思考(一个例子)"
+	}, {
 		"id": 10,
 		"path": "an-example-of-thinking-in-abstraction.md",
 		"tags": ["Abstraction", "JavaScript"],
