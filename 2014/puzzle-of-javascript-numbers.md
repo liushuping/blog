@@ -1,1 +1,0 @@
-# Puzzle of JavaScript Numbers
