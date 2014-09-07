@@ -5,7 +5,12 @@
 ##What does `this` refer to in JavaScript
 In one word, `this` in JavaScript refers to the function execution context. More specificly, `this` keyword in a function refers to the object to which the function belongs when it is executing. 
 
-For example, below code defines a function `foo`
+For example, below code defines a function `foo` which sets `this.name` to value `foo`.
 ```javascript
 function foo() {
-    console.log(
+    this.name = 'foo';
+}
+```
+If directly run this function, the `name` property will be set to `window` object (in browser) or `global` object (in node.js) because in this case, `foo` belongs to `window` or `global` object. In other word, `window` or `global` is the execution context of function `foo`.
+
+
