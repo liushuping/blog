@@ -1,9 +1,9 @@
 #JavaScript this is the function execution context
 
-`this` keyword in JavaScript is confusing for a lot developers who come from OO world (i.e. Java, C++ or C#)as they assume it should behave exactly the same as in other languages for example `this` in C++. Actually `this` keyword in JavaScript is totally different from `this` in most OO languages.
+`this` keyword in JavaScript is confusing for a lot developers who come from OO world (i.e. Java, C++ or C#) as they assume it should behave exactly the same as in other languages for example `this` in C++. Actually `this` keyword in JavaScript is totally different from it in most OO languages.
 
 ##What does `this` refer to in JavaScript
-In one word, `this` in JavaScript refers to the function execution context. More specifically, `this` keyword in a function refers to the object to which the function belongs when it is executing. 
+In one word, *`this` in JavaScript refers to the function execution context*. More specifically, `this` keyword in a function refers to the object to which the function belongs when it is executing. 
 
 For example, below code defines a function `foo` which sets `this.name` to value `foo`.
 ```javascript
@@ -11,7 +11,7 @@ function foo() {
     this.name = 'foo';
 }
 ```
-If directly run this function, the `name` property will be set to `window` object (in browser) or `global` object (in node.js) because in this case, `foo` belongs to `window` or `global` object. In other word, `window` or `global` is the execution context of function `foo`.
+If directly run this function, the `name` property will be set to `window` object (in browser) or `global` object (in node.js) because in this case `foo` belongs to `window` or `global` object. In other word, `window` or `global` is the execution context of function `foo`.
 
 If a function is declared as a property of an object, then `this` from the function will be the reference to the object. For example, in below code `this` in function `foo` refers to the object `obj`.
 ```javascript
@@ -35,7 +35,7 @@ In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a proper
 ##`this` can be changed in different run time
 There will be no confuse if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
 
-Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1`. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` will refer to `obj2`
+Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1`. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` (the one which belongs to `obj2`) will refer to `obj2`
 ```javascript
 var obj1 = {
     foo: function() {
@@ -66,7 +66,7 @@ $('.button').click(function() {
     console.log(this);
 });
 ```
-What is `this` from the code refers to? it refers to the element that jQuery has selected, in this case is the '.button'. I we don't aware of this, we may have written below code:
+What is `this` from the code refers to? it refers to the element that jQuery has selected, in this case is the '.button'. If we are not aware of this, we may have written below code:
 ```javascript
 function MyObj() {
     this.name = 'MyObj';
@@ -80,4 +80,7 @@ function MyObj() {
 var obj = new MyObj();
 obj.register();
 ```
-They we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
+Then we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
+
+---
+by liushuping
