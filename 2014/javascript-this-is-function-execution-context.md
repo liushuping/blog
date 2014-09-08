@@ -3,7 +3,7 @@
 `this` keyword in JavaScript is confusing for a lot developers who come from OO world (i.e. Java, C++ or C#)as they assume it should behave exactly the same as in other languages for example `this` in C++. Actually `this` keyword in JavaScript is totally different from `this` in most OO languages.
 
 ##What does `this` refer to in JavaScript
-In one word, `this` in JavaScript refers to the function execution context. More specificly, `this` keyword in a function refers to the object to which the function belongs when it is executing. 
+In one word, `this` in JavaScript refers to the function execution context. More specifically, `this` keyword in a function refers to the object to which the function belongs when it is executing. 
 
 For example, below code defines a function `foo` which sets `this.name` to value `foo`.
 ```javascript
@@ -30,6 +30,19 @@ function MyObj() {
 
 var obj = new MyObj();
 ```
-In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a property named `name` with value `"MyObj"`. However, if we don't use `new` operator but just directly call function like `var x = MyObj();`. As a result, we get `undefined` for x becasue function `MyObj` has no return. Even worse is that it also has side effects: it generates a `name` property on `window` or `global` object!  So naming convention is important, if a function is declared in Pascal naming it is pretented to be used as a class rather than a plain function!
+In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a property named `name` with value `"MyObj"`. However, if we don't use `new` operator but just directly call function like `var x = MyObj();`. As a result, we get `undefined` for x because function `MyObj` has no return. Even worse is that it also has side effects: it generates a `name` property on `window` or `global` object!  So naming convention is important, if a function is declared in Pascal naming it is pretended to be used as a class rather than a plain function!
 
 ##`this` can be changed in different run time
+There will be no confuse if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
+
+Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1'. But later on I assigned the `foo` function to object `obj2' then the `this` keyword in `foo` will refer to `obj2`
+```javascript
+var obj1 = {
+    foo: function() {
+        this.name = 'foo';
+    }
+};
+
+var obj2 = {};
+obj2.foo = obj1.foo;
+```
