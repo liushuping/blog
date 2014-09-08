@@ -65,6 +65,7 @@ Let's see an example of using jQuery. Suppose we register a callback on a button
 $('.button').click(function() {
     console.log(this);
 });
+```
 What is `this` from the code refers to? it refers to the element that jQuery has selected, in this case is the '.button'. I we don't aware of this, we may have written below code:
 ```javascript
 function MyObj() {
