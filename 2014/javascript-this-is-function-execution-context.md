@@ -84,7 +84,7 @@ obj.register();
 Then we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
 
 ##How to explicitly set the function execution context
-In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction executing context. However, in some cases the function is a callback an we have no control of how the function is called. So, in this condition some library would help. underscore.js is a great library we could use, it has a lot functional programming style functions, from which the `bind` and `bindAll` are the functions for changing a function's execution context. still chaning the jQuery example, we could fix it by using `bind`:
+In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback an we have no control of how the function is called. So, in this condition some library would help. underscore.js is a great library we could use, it has a lot functional programming style functions, from which the `bind` and `bindAll` are the functions for changing a function's execution context. still taking the jQuery example, we could fix it by using `bind`:
 ```javascript
 function MyObj() {
     this.name = 'MyObj';
