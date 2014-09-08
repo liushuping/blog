@@ -35,7 +35,7 @@ In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a proper
 ##`this` can be changed in different run time
 There will be no confuse if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
 
-Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1'. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` will refer to `obj2`
+Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1`. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` will refer to `obj2`
 ```javascript
 var obj1 = {
     foo: function() {
@@ -60,4 +60,23 @@ obj1.foo.call(obj3);
 In this situation, the `this` keyword in `foo` function refers to the actual parent object which is `obj3`.
 
 ##Why it is important knowing `this` is function execution context
+Let's see an example of using jQuery. Suppose we register a callback on a button's click event:
+```javascript
+$('.button').click(function() {
+    console.log(this);
+});
+What is `this` from the code refers to? it refers to the element that jQuery has selected, in this case is the '.button'. I we don't aware of this, we may have written below code:
+```javascript
+function MyObj() {
+    this.name = 'MyObj';
+    this.register = function() {
+        $('.button').click(function() {
+            console.log(this.name);
+        });
+    };
+}
 
+var obj = new MyObj();
+obj.register();
+```
+They we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
