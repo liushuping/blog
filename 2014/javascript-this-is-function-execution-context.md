@@ -35,7 +35,7 @@ In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a proper
 ##`this` can be changed in different run time
 There will be no confuse if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
 
-Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1'. But later on I assigned the `foo` function to object `obj2' then the `this` keyword in `foo` will refer to `obj2`
+Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1'. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` will refer to `obj2`
 ```javascript
 var obj1 = {
     foo: function() {
@@ -46,3 +46,18 @@ var obj1 = {
 var obj2 = {};
 obj2.foo = obj1.foo;
 ```
+
+In the code, there are 2 copies of function `foo`, one is in object `obj1` and another one is in object `obj2`. 
+
+JavaScript also support changing the function execution context when running the function. Suppose we have an object `obj3` as below:
+```javascript
+var obj3 = {};
+```
+Then we could even execute the `foo` function on `obj3`:
+```javascript
+obj1.foo.call(obj3);
+```
+In this situation, the `this` keyword in `foo` function refers to the actual parent object which is `obj3`.
+
+##Why it is important knowing `this` is function execution context
+
