@@ -84,7 +84,7 @@ obj.register();
 Then we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
 
 ##How to explicitly set the function execution context
-In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback and we have no control of how the function is called. So, in this condition `Function.prototype.bind` will help us by bind a function to a specific object. Still take the jQuery example:
+In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback and we have no control of how the function is called. So, in this condition `Function.prototype.bind` will help us by binding a function to a specific object. Still take the jQuery example:
 ```javascript
 function MyObj() {
     this.name = 'MyObj';
