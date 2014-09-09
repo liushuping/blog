@@ -84,7 +84,7 @@ obj.register();
 Then we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
 
 ##How to explicitly set the function execution context
-In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback and we have no control of how the function is called. So, in this condition some library would help. underscore.js is a great library we could use, it has a lot functional programming style functions, from which the `bind` and `bindAll` are the functions for changing a function's execution context. still taking the jQuery example, we could fix it by using `bind`:
+In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback and we have no control of how the function is called. So, in this condition `Function.prototype.bind` will help us by bind a function to a specific object. Still take the jQuery example:
 ```javascript
 function MyObj() {
     this.name = 'MyObj';
@@ -94,7 +94,8 @@ function MyObj() {
             console.log(this.name);
         };
         
-        callback = _.bind(callback, this);
+        //bind the callback to this (the instance of MyObj);
+        callback = callback.bind(this);
         
         $('.button').click(callback);
     };
@@ -103,6 +104,8 @@ function MyObj() {
 var obj = new MyObj();
 obj.register();
 ```
+
+Some JavaScript library also implemented this, for example underscore.js is a great library we could use, it has a lot functional programming style functions, from which the `bind` and `bindAll` are the functions for changing a function's execution context. it is an equivalent of `Function.prototype.bind`.
 
 Somethimes we also use the `that` pattern to solve the issue. `that` is a clone of `this` by using closure. By doing this, we avoid the changing of `this` reference.
 ```javascript
