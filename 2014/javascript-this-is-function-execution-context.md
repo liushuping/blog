@@ -13,8 +13,8 @@ function foo() {
 ```
 If directly run this function, the `name` property will be set to `window` object (in browser) or `global` object (in node.js) because in this case `foo` belongs to `window` or `global` object. In other word, `window` or `global` is the execution context of function `foo`.
 
-If a function is declared as a property of an object, then `this` from the function will be the reference to the object. For example, in below code `this` in function `foo` refers to the object `obj`.
-```javascript
+If a function is declared as a property of an object, `this` from it will be the reference to the object. For example, in below code `this` in function `foo` refers to the object `obj`.
+```javascript	
 var obj = {
     foo: function() {
         this.name = 'foo';
@@ -33,7 +33,7 @@ var obj = new MyObj();
 In above code, object `obj` is a new instance of  `MyObj`, so `obj` has a property named `name` with value `"MyObj"`. However, if we don't use `new` operator but just directly call function like `var x = MyObj();`. As a result, we get `undefined` for x because function `MyObj` has no return. Even worse is that it also has side effects: it generates a `name` property on `window` or `global` object!  So naming convention is important, if a function is declared in Pascal naming it is pretended to be used as a class rather than a plain function!
 
 ##`this` can be changed in different run time
-There will be no confuse if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
+There will be no confusion if `this` constantly refers to the same object. Unfortunately it is not, the above `MyObj` example has already demonstrated this.
 
 Actually there are a lot other examples showing that `this` could refer to different objects in different conditions. For example, the `foo` function is defined on object `obj1`, so the `this` keyword refers to `obj1`. But later on I assigned the `foo` function to object `obj2` then the `this` keyword in `foo` (the one which belongs to `obj2`) will refer to `obj2`
 ```javascript
@@ -81,7 +81,7 @@ function MyObj() {
 var obj = new MyObj();
 obj.register();
 ```
-Then we expected the output of clicking the button is 'MyObj', but actually not. Because the jQuery has its own function execution definition which is the element itself. 
+Then we expected the output of clicking the button is 'MyObj', but actually not, because the jQuery has its own function execution definition which is the element itself. 
 
 ##How to explicitly set the function execution context
 In most cases if a function is called by our own code, we could simply use `call` or `apply` function to change the fuction execution context. However, in some cases the function is a callback and we have no control of how the function is called. So, in this condition `Function.prototype.bind` will help us by binding a function to a specific object. Still take the jQuery example:
