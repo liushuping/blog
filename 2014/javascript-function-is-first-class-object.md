@@ -5,6 +5,14 @@ What is first class object? A definition from Wikipidea:
 
 So to say function is first class object in JavaScript, we need to prove that function could be used as a normal object in JavaScript.
 
+##function can assigned to a variable
+
+##function can be passed as a parameter
+
+##function can be a return of another function
+
+##function has characters which a JavaScript Object has
+
 high order
 
 assign
